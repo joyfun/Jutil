@@ -11,7 +11,7 @@ public class Iconv {
 	 */
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
-		cpEncDir("F:/movie/Root", "F:/movie/Test");
+		cpEncDir("F:/movie/Root", "F:/movie/Test","UTF-8");
 	}
 
 	public static File[] listDir(String path) {
@@ -22,23 +22,33 @@ public class Iconv {
 		}
 		return fileList;
 	}
-
-	public static void cpEncDir(String fromdir, String toDir)
+/**
+ * recreate folder and move files
+ * @param fromdir
+ * @param toDir
+ * @param encoding
+ * @throws UnsupportedEncodingException
+ */
+	public static void cpEncDir(String fromdir, String toDir,String encoding)
 			throws UnsupportedEncodingException {
+		if(null==encoding){
+			encoding="UTF-8";
+		}
 		File[] afileList = listDir(fromdir);
 		File[] tolist = new File[afileList.length];
 		ChangeCharset test = new ChangeCharset();
 		for (int i = 0; i < afileList.length; i++) {
 
 			tolist[i] = new File(toDir + "/"
-					+ test.toUTF_8(afileList[i].getName()));
+					+ test.changeCharset(afileList[i].getName(),encoding));
 			if (afileList[i].isDirectory()) {
 				tolist[i].mkdirs();
-				cpEncDir(afileList[i].getPath(), tolist[i].getPath());
+				cpEncDir(afileList[i].getPath(), tolist[i].getPath(),encoding);
 			} else {
-				System.out.println(tolist[i].getPath());
 				afileList[i].renameTo(tolist[i]);
+				
 			}
+	//		System.out.println(tolist[i].getPath());
 
 		}
 	}

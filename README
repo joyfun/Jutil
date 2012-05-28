@@ -1,0 +1,5 @@
+This project is some tools Used by myself  to help make operation easy 
+For some reason this code writen on a Windows Machine if you have some issue in file encoding 
+please check the project file encoding.
+1 Iconv can change file and directory encoding  like convmv , useage  cpEncDir (sourcedir,todir,encoding)
+2 ChageCharset can change string chareset.
