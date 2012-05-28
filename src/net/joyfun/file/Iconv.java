@@ -11,7 +11,11 @@ public class Iconv {
 	 */
 	public static void main(String[] args) throws UnsupportedEncodingException {
 		// TODO Auto-generated method stub
-		cpEncDir("F:/movie/Root", "F:/movie/Test","UTF-8");
+		if(args.length<3){
+			System.out.println("usage:Iconv sourcedir todir encoding ");
+		}
+		cpEncDir(args[0], args[1],args[2]);
+//		cpEncDir("F:/movie/Root", "F:/movie/Test","UTF-8");
 	}
 
 	public static File[] listDir(String path) {
